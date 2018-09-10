@@ -33,20 +33,18 @@ public class MainActivity extends AppCompatActivity {
         adapter = new AlarmaAdapter(this, alarmaList);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnAggRecordatorio);
         fab.setOnClickListener(aggRecordatorio);
-        //getAllAlarmas();
+        //
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-        //prepareAlarms();
+        //
         getAllAlarmas();
     }
 
     public void getAllAlarmas() {
-        //alarmaList = new ArrayList<>();
         alarmaList.clear();
         alarmaList.addAll(tinyDB.getListAlarm("allAlarmas", Alarma.class));
-        //Log.d("MILIST", alarmaList.get(0).getUriTonePath());
         adapter.notifyDataSetChanged();
     }
 
