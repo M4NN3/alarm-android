@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dias">
+        <item>DOM</item>
+        <item>LUN</item>
+        <item>MAR</item>
+        <item>MIE</item>
+        <item>JUE</item>
+        <item>VIE</item>
+        <item>SAB</item>
+    </string-array>
+</resources>

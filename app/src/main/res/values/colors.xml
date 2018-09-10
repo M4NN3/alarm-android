@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F50057</color>
+    <color name="colorPrimaryDark">#F50057</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="viewBg">#f1f5f8</color>
+    <color name="hora_alarma">#fff</color>
+    <color name="dias_alarma">#a9a9a9</color>
+    <color name="card_back">#e9000000</color>
+    <color name="dias_gray">#565555</color>
+</resources>

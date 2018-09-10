@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AggRecordatorio">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnsCancelarHecho">
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:background="#000"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="CANCELAR"
+            android:textSize="15sp"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:background="#fff" />
+        <Button
+            android:id="@+id/btnHecho"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textColor="@color/colorPrimary"
+            android:background="#000"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="HECHO"
+            android:textSize="15sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/btnsCancelarHecho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/lvDias"
+        android:padding="15dp">
+        <ToggleButton
+            android:id="@+id/sunday_toggle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/circle_toggle_button"
+            android:textOn="D"
+            android:textOff="D"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text="New ToggleButton" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ToggleButton
+            android:id="@+id/monday_toggle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/circle_toggle_button"
+            android:textOn="L"
+            android:textOff="L"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text="New ToggleButton" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+        <ToggleButton
+            android:id="@+id/tuesday_toggle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/circle_toggle_button"
+            android:textOn="M"
+            android:textOff="M"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text="New ToggleButton" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <ToggleButton
+            android:id="@+id/wednesday_toggle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/circle_toggle_button"
+            android:textOn="M"
+            android:textOff="M"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text="New ToggleButton"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+        <ToggleButton
+            android:id="@+id/thursday_toggle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/circle_toggle_button"
+            android:textOn="J"
+            android:textOff="J"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text="New ToggleButton" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <ToggleButton
+            android:id="@+id/friday_toggle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/circle_toggle_button"
+            android:textOn="V"
+            android:textOff="V"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text="New ToggleButton" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ToggleButton
+            android:id="@+id/saturday_toggle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/circle_toggle_button"
+            android:textOn="S"
+            android:textOff="S"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text="New ToggleButton" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="13dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/lvDias">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/lvTituloAlarma"
+            android:layout_marginBottom="15dp">
+            <TextView
+                android:focusable="false"
+                android:id="@+id/txtTituloAlarma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre de alarma"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:drawableEnd="@drawable/ic_alarma"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:maxLines="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/lvBuscarTono"
+            android:layout_marginBottom="15dp">
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:focusable="false"
+                android:id="@+id/txtTonoAlarma"
+                android:drawableEnd="@drawable/ic_music"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tono de alarma"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/lvEscogerHora">
+            <TextView
+                android:focusable="false"
+                android:id="@+id/txtHoraAlarma"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Hora de alarma"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:drawableEnd="@drawable/ic_time"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
