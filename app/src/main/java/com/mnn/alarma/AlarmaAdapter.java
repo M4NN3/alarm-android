@@ -153,13 +153,16 @@ public class AlarmaAdapter extends RecyclerView.Adapter<AlarmaAdapter.MyViewHold
                         intent, 0);
                 alarmManager.cancel(pendingIntent);
             }
+            //notifyDataSetChanged();
+            //false significa q solo va a desactivar, no lo elimina de la lista
+            if(vaAeliminar) {
+                removerAlarmas(alarma, pos);
+                return;
+            }
+            //si no lo actuliza
             alarma.setActivado(false);
             alarmaList.set(pos, alarma);
             tinyDB.putListAlarm("allAlarmas", alarmaList);
-            notifyDataSetChanged();
-            //false significa q solo va a desactivar, no lo elimina de la lista
-            if(vaAeliminar)
-                removerAlarmas(alarma, pos);
         } catch (Exception e) {
             Toast.makeText(mContext, "Ocurrió un error cancelando las alarmas",
                     Toast.LENGTH_LONG).show();
