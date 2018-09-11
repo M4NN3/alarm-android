@@ -202,9 +202,10 @@ public class AggRecordatorio extends AppCompatActivity {
         }
     };
     private void setAlarm(int hora, int min, List<Integer> diasRepeticion){
-        Calendar alarmCalendar = Calendar.getInstance();
+
         List<Integer> alarmaIds = new ArrayList<>();
         for (int dia : diasRepeticion) {
+            Calendar alarmCalendar = Calendar.getInstance();
             int alarmaId = Integer.parseInt(RandomStringUtils.randomNumeric(5));
             alarmaIds.add(alarmaId);
             alarmCalendar.set(Calendar.DAY_OF_WEEK, dia);
