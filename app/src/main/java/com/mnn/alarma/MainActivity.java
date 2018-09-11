@@ -3,11 +3,14 @@ package com.mnn.alarma;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         alarmaList = new ArrayList<>();
         adapter = new AlarmaAdapter(this, alarmaList);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnAggRecordatorio);
+        FloatingActionButton fabMade = (FloatingActionButton) findViewById(R.id.btnMadeWithLove);
         fab.setOnClickListener(aggRecordatorio);
         //
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
@@ -40,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         //
         getAllAlarmas();
+
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        builder.append("Made with ").append(" ");
+        builder.setSpan(new ImageSpan(MainActivity.this, R.drawable.ic_love), builder.length() - 1, builder.length(), 0);
+        builder.append(" by M4NN3");
+
+        fabMade.setOnClickListener(v -> {
+            Snackbar.make(v, builder, Snackbar.LENGTH_LONG).show();
+        });
     }
 
     public void getAllAlarmas() {
@@ -55,5 +68,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public View.OnClickListener aggRecordatorio = (v -> {
         startActivity(new Intent(this, AggRecordatorio.class));
+    });
+    public View.OnClickListener madeWithLove = (v -> {
+        //Snackbar.make(v,"Made with ", Snackbar.LENGTH_LONG);
     });
 }

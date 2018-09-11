@@ -213,7 +213,7 @@ public class AggRecordatorio extends AppCompatActivity {
             alarmCalendar.set(Calendar.SECOND, 0);
             alarmCalendar.set(Calendar.MILLISECOND, 0);
             if(alarmCalendar.before(Calendar.getInstance())) {
-                alarmCalendar.add(Calendar.DATE, dia);
+                alarmCalendar.add(Calendar.DATE, 7);
             }
             //String leftTime = "AlarmSet  " + alarmCalendar.getTime();
             Intent intent = new Intent(this, AlarmReceiver.class);

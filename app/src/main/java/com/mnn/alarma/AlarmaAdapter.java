@@ -84,6 +84,7 @@ public class AlarmaAdapter extends RecyclerView.Adapter<AlarmaAdapter.MyViewHold
         }
         // Cambiando el estilo cuando switch == true
         holder.activateAlarm.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
             if (isChecked) {
                 setAlarm(alarma, alarma.getDiasNumeric(), position);
                 pintarTxts(holder.txtDias);
