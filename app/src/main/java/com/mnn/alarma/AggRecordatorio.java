@@ -34,7 +34,6 @@ import java.util.Calendar;
 import java.util.List;
 
 public class AggRecordatorio extends AppCompatActivity {
-    final static int RQS_1 = 1;
     private List<ToggleButton> dayToggles = new ArrayList<>();
     public static final int GET_TONES_REQUEST_ID=777;
     private Uri tonoChosenUri;
@@ -60,7 +59,6 @@ public class AggRecordatorio extends AppCompatActivity {
         overridePendingTransition(R.anim.left_in, R.anim.left_out);
         setTitle("Agregar Recordatorio");
         bindViews();
-
 
         diasArray = getResources().getStringArray(R.array.dias);
         tinyDB = new TinyDB(this);
@@ -150,8 +148,8 @@ public class AggRecordatorio extends AppCompatActivity {
         TimePickerDialog recogerHora = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                String horaFormateada =  (hourOfDay < 10)? String.valueOf(CERO + hourOfDay) : String.valueOf(hourOfDay);
-                String minutoFormateado = (minute < 10)? String.valueOf(CERO + minute):String.valueOf(minute);
+                String horaFormateada =  formatHoraMin(hourOfDay);
+                String minutoFormateado = formatHoraMin(minute);
                 String AM_PM = (hourOfDay < 12) ? "a.m." : "p:m";
                 minutoAlarma = minute;
                 horaAlarma = hourOfDay;

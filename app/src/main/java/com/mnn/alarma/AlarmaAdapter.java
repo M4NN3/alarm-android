@@ -77,19 +77,24 @@ public class AlarmaAdapter extends RecyclerView.Adapter<AlarmaAdapter.MyViewHold
         holder.txtHora.setText(horaFormateada + ":" + minutoFormateado);
         holder.txtDias.setText(showDiasFromList(alarma.getDias()));
         holder.activateAlarm.setChecked(alarma.isActivado());
+        if (!alarma.isActivado()){
+            desPintarTxts(holder.txtDias);
+            desPintarTxts(holder.txtTitulo);
+            desPintarTxts(holder.txtHora);
+        }
         // Cambiando el estilo cuando switch == true
         holder.activateAlarm.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                setAlarm(alarma, alarma.getDiasNumeric());
-                holder.txtHora.setTextColor(mContext.getResources().getColor(R.color.hora_alarma));
-                holder.txtDias.setTextColor(mContext.getResources().getColor(R.color.dias_alarma));
-                holder.txtTitulo.setTextColor(mContext.getResources().getColor(R.color.dias_alarma));
+                setAlarm(alarma, alarma.getDiasNumeric(), position);
+                pintarTxts(holder.txtDias);
+                pintarTxts(holder.txtHora);
+                pintarTxts(holder.txtTitulo);
             }
             else {
                 cancelAlarm(alarma,false, position);
-                holder.txtHora.setTextColor(mContext.getResources().getColor(R.color.dias_gray));
-                holder.txtDias.setTextColor(mContext.getResources().getColor(R.color.dias_gray));
-                holder.txtTitulo.setTextColor(mContext.getResources().getColor(R.color.dias_gray));
+                desPintarTxts(holder.txtDias);
+                desPintarTxts(holder.txtTitulo);
+                desPintarTxts(holder.txtHora);
             }
         });
         holder.alarmasCard.setOnClickListener((v) -> {
@@ -107,6 +112,12 @@ public class AlarmaAdapter extends RecyclerView.Adapter<AlarmaAdapter.MyViewHold
         holder.btnEliminar.setOnClickListener((View v) -> {
             cancelAlarm(alarma, true,position);
         });
+    }
+    private void pintarTxts(TextView t){
+        t.setTextColor(mContext.getResources().getColor(R.color.hora_alarma));
+    }
+    private void desPintarTxts(TextView t){
+        t.setTextColor(mContext.getResources().getColor(R.color.dias_gray));
     }
     @Override
     public int getItemCount() {
@@ -141,6 +152,10 @@ public class AlarmaAdapter extends RecyclerView.Adapter<AlarmaAdapter.MyViewHold
                         intent, 0);
                 alarmManager.cancel(pendingIntent);
             }
+            alarma.setActivado(false);
+            alarmaList.set(pos, alarma);
+            tinyDB.putListAlarm("allAlarmas", alarmaList);
+            notifyDataSetChanged();
             //false significa q solo va a desactivar, no lo elimina de la lista
             if(vaAeliminar)
                 removerAlarmas(alarma, pos);
@@ -149,7 +164,7 @@ public class AlarmaAdapter extends RecyclerView.Adapter<AlarmaAdapter.MyViewHold
                     Toast.LENGTH_LONG).show();
         }
     }
-    private void setAlarm(Alarma alarma, List<Integer> diasRepeticion){
+    private void setAlarm(Alarma alarma, List<Integer> diasRepeticion, int pos){
         Calendar alarmCalendar = Calendar.getInstance();
         List<Integer> alarmaIds = new ArrayList<>();
         try {
@@ -162,7 +177,8 @@ public class AlarmaAdapter extends RecyclerView.Adapter<AlarmaAdapter.MyViewHold
                 alarmCalendar.set(Calendar.SECOND, 0);
                 alarmCalendar.set(Calendar.MILLISECOND, 0);
                 if(alarmCalendar.before(Calendar.getInstance())) {
-                    alarmCalendar.add(Calendar.DATE, dia);
+                    //q suene el día de la otra semana
+                    alarmCalendar.add(Calendar.DATE, 7);
                 }
                 //String leftTime = "AlarmSet  " + alarmCalendar.getTime();
                 Intent intent = new Intent(mContext, AlarmReceiver.class);
@@ -174,6 +190,10 @@ public class AlarmaAdapter extends RecyclerView.Adapter<AlarmaAdapter.MyViewHold
                 AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
                 alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmCalendar.getTimeInMillis(), pendingIntent);
             }
+            alarma.setActivado(true);
+            alarmaList.set(pos, alarma);
+            tinyDB.putListAlarm("allAlarmas", alarmaList);
+            notifyDataSetChanged();
             tinyDB.putListInt("alarmasId", alarmaIds);
         }
         catch (Exception ex){
